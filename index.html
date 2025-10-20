@@ -8,6 +8,9 @@
    
 </head>
 <body>
+    <div id="construction-banner">
+    Web en construcción, estará lista en breve.
+</div>
     <header>
         <h1 class="titulo">La Malagueña</h1>
         <img class="logo" src="LOGO_OK.png">
@@ -49,8 +52,24 @@
             <a href="#">TikTok</a> 
         </div>
     </footer>
+    <script>
+    // Espera a que todo el contenido de la página se cargue
+    window.addEventListener('load', function() {
+        
+        // Selecciona el banner por su ID
+        const banner = document.getElementById('construction-banner');
+
+        // Espera 3 segundos (3000 milisegundos) antes de hacer algo
+        setTimeout(function() {
+            // Añade la clase 'banner-hidden' para que empiece la animación de desvanecimiento
+            banner.classList.add('banner-hidden');
+        }, 3000); // <-- Puedes cambiar este número para que dure más o menos tiempo
+
+    });
+</script>
 </body>
 
 </html>
+
 
 
