@@ -1,4 +1,4 @@
-/* --- TUS ESTILOS ORIGINALES (con pequeñas mejoras) --- */
+
 html,body{
     width: 100%;
     padding: 0;
@@ -33,10 +33,22 @@ header{
     height: auto;
 }
 
-h1{
+h1, h2, h3{
     text-align: center;
     margin-top: 30px;
     color:goldenrod ;
+}
+
+h3 {
+    color: rgb(12, 12, 12);
+}
+
+.sectiongalery {
+    display: grid;
+    /* Reducimos el mínimo para que quepa en móviles pequeños */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .galeria{
@@ -44,34 +56,31 @@ h1{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    perspective: 1000px;
-    animation: zoomSuave 2s ease-out;
-}
-
-@keyframes zoomSuave {
-    0% { opacity: 0; transform: scale(0.9); }
-    100% { opacity: 1; transform: scale(1); }
 }
 
 .galeria img{
+    width: 100%; /* La imagen se ajusta al 100% de la tarjeta */
+    height: 250px; /* Altura fija para que todas sean iguales */
+    object-fit: cover; /* La imagen cubre el espacio sin deformarse */
+    border-radius: 10px;
+}
+
+.galeria p{
     width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    filter: brightness(0.95);
+    color: black;
+    font-size: 28px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-.galeria img:hover {
-    transform: translateY(-8px) rotateX(5deg);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    filter: brightness(1);
-}
-
-.sectiongalery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+.galeria a{
+    text-decoration: none;
+    color: black;
+    background-color: goldenrod;
+    border-radius: 15px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
 }
 
 /* Estilos para el menú desplegable */
@@ -126,28 +135,13 @@ h1{
     display: block;
 }
 
-/* Footer */
-.footer{
-    display: flex;
-    justify-content: space-between;
-    background-color: antiquewhite;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
-    flex-wrap: wrap; /* Permite que se apile si no cabe */
-    gap: 20px;
+/* Tus animaciones */
+@keyframes desplazarElegante {
+    0% { transform: translateX(-100%) scale(0.8); opacity: 0; }
+    25% { transform: translateX(0%) scale(1); opacity: 1; }
+    75% { transform: translateX(0%) scale(1); opacity: 1; }
+    100% { transform: translateX(100%) scale(0.8); opacity: 0; }
 }
-
-.footerinfo, .footer-rrss, .footerlogo {
-    flex: 1;
-    min-width: 250px; /* Ancho mínimo antes de apilarse */
-}
-
-.logof{
-    width: 100px;
-    height: auto;
-}
-
 
 /* ======================================================= */
 /* --- AQUÍ EMPIEZA LA MAGIA DEL RESPONSIVE --- */
@@ -174,12 +168,7 @@ h1{
     }
 
     /* Ajustamos los títulos */
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    /* Apilamos el footer */
-    .footer {
-        flex-direction: column;
+    h2, h3 {
+        font-size: 1.5rem;
     }
 }
