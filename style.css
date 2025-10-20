@@ -1,0 +1,217 @@
+/* ============================================== */
+/* --- ESTILOS GENERALES Y PARA ESCRITORIO --- */
+/* ============================================== */
+html, body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- HEADER --- */
+header {
+    display: flex;
+    /* Usamos flex para alinear horizontalmente en escritorio */
+    flex-direction: row; 
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center;
+    padding: 10px 20px; /* Añadimos algo de padding */
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+}
+
+.titulo {
+    color: goldenrod;
+    margin: 0;
+    font-size: 2.5rem; /* Usamos unidades relativas como 'rem' */
+}
+
+.logo {
+    width: 150px; /* Un tamaño base para el logo */
+    height: auto;
+    /* Quitamos los márgenes fijos que daban problemas */
+}
+
+/* --- BARRA DE NAVEGACIÓN --- */
+.barra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%; /* Hacemos que la barra ocupe todo el ancho en el header */
+    margin-top: 20px;
+}
+
+.simple-btn, .dropbtn {
+    background-color: rgb(247, 243, 243);
+    color: black;
+    font-size: 1.5rem; /* Tamaño de fuente más manejable y relativo */
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.simple-btn:hover, .dropbtn:hover {
+    background-color: #e0e0e0;
+}
+
+/* --- DROPDOWN MENU --- */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    z-index: 1000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1.1rem; /* Ajustamos tamaño */
+    text-align: center;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+main h1, main h2, main h3 {
+    text-align: center;
+    color: goldenrod;
+    padding: 0 20px; /* Evita que el texto toque los bordes en pantallas pequeñas */
+}
+
+.sectiongalery {
+    display: grid;
+    /* ¡Esta línea ya era responsiva! Perfecto. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    padding: 20px;
+}
+
+.galeria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.galeria img {
+    width: 100%; /* Hacemos que la imagen se ajuste a su contenedor */
+    max-width: 400px; /* Evitamos que sea demasiado grande en la página de comida */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.galeria p {
+    color: black;
+    font-size: 1.5rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.galeria a {
+    text-decoration: none;
+    color: black;
+    background-color: goldenrod;
+    border-radius: 15px;
+    padding: 10px 25px; /* Padding para el botón */
+    margin-top: 10px;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+.galeria a:hover{
+    transform: scale(1.05);
+}
+
+/* --- FOOTER --- */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 20px;
+    text-align: center;
+    flex-wrap: wrap; /* Permite que se envuelva en pantallas pequeñas */
+    gap: 20px; /* Espacio entre los elementos cuando se apilan */
+}
+
+.footerinfo, .footer-rrss, .footerlogo {
+    flex: 1; /* Permite que crezcan y ocupen espacio */
+    min-width: 200px; /* Ancho mínimo antes de que se apilen */
+}
+
+.logof {
+    width: 100px;
+    height: auto;
+}
+
+/* ======================================================= */
+/* --- AHORA LA MAGIA: ESTILOS PARA MÓVILES Y TABLETS --- */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+
+    /* --- HEADER EN MÓVIL --- */
+    header {
+        flex-direction: column; /* Apilamos el logo y el título verticalmente */
+        gap: 15px; /* Espacio entre logo y título */
+    }
+
+    .titulo {
+        font-size: 2rem; /* Reducimos un poco el tamaño del título */
+    }
+    
+    .logo {
+        width: 120px; /* Hacemos el logo un poco más pequeño */
+        order: -1; /* Opcional: Pone el logo arriba del título */
+    }
+
+    /* --- NAVEGACIÓN EN MÓVIL --- */
+    .barra {
+        flex-direction: column; /* Apilamos los botones del menú */
+        gap: 15px;
+    }
+
+    .simple-btn, .dropbtn {
+        font-size: 1.2rem; /* Hacemos los botones más pequeños */
+        width: 80%; /* Hacemos que ocupen más ancho para ser fáciles de tocar */
+        text-align: center;
+    }
+    
+    /* --- TÍTULOS EN MÓVIL --- */
+    main h1, main h2 {
+        font-size: 1.8rem;
+    }
+
+    /* --- FOOTER EN MÓVIL --- */
+    .footer {
+        flex-direction: column; /* Apilamos las secciones del footer */
+        gap: 25px;
+    }
+}
+
+/* Animaciones (estas ya estaban bien, no necesitan cambios) */
+@keyframes brilloDorado { /*...*/ }
+@keyframes zoomSuave { /*...*/ }
+@keyframes desplazarElegante { /*...*/ }
+/* (Copia y pega aquí tus @keyframes para que sigan funcionando) */
