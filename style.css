@@ -3,9 +3,7 @@
 /* ============================================== */
 *, *::before, *::after {
     /* --- CAMBIO CLAVE --- 
-       Este es el superhéroe del CSS responsivo.
-       Asegura que el padding y el borde se incluyan DENTRO del ancho 
-       de un elemento, no que se sumen, evitando desbordamientos. */
+       
     box-sizing: border-box; 
     margin: 0;
     padding: 0;
@@ -236,3 +234,4 @@ main h1, main h2, main h3 {
 @keyframes brilloDorado { /* ... */ }
 @keyframes zoomSuave { /* ... */ }
 @keyframes desplazarElegante { /* ... */ }
+
