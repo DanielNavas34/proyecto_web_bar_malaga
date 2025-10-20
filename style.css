@@ -1,57 +1,72 @@
 /* ============================================== */
-/* --- ESTILOS GENERALES Y PARA ESCRITORIO --- */
+/* --- ESTILOS GLOBALES Y RESETEO --- */
 /* ============================================== */
+*, *::before, *::after {
+    /* --- CAMBIO CLAVE --- 
+       Este es el superhéroe del CSS responsivo.
+       Asegura que el padding y el borde se incluyan DENTRO del ancho 
+       de un elemento, no que se sumen, evitando desbordamientos. */
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
 html, body {
     width: 100%;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* --- CAMBIO CLAVE --- 
+       Esta es la solución definitiva al "corte".
+       Evita que se pueda hacer scroll horizontal en la página. */
+    overflow-x: hidden;
 }
+
+/* ============================================== */
+/* --- ESTILOS GENERALES (Mobile First) --- */
+/* ============================================== */
 
 /* --- HEADER --- */
 header {
     display: flex;
-    /* Usamos flex para alinear horizontalmente en escritorio */
-    flex-direction: row; 
-    justify-content: space-between; /* Espacio entre los elementos */
+    flex-direction: column; /* Apilado en vertical para móviles */
     align-items: center;
-    padding: 10px 20px; /* Añadimos algo de padding */
-    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+    text-align: center;
+    padding: 20px 15px; /* Padding para que no se pegue a los bordes */
+    gap: 15px;
+}
+
+.logo {
+    width: 130px; /* Un tamaño adecuado para móviles */
+    height: auto;
+    order: -1; /* Pone el logo encima del título */
 }
 
 .titulo {
     color: goldenrod;
-    margin: 0;
-    font-size: 2.5rem; /* Usamos unidades relativas como 'rem' */
-}
-
-.logo {
-    width: 150px; /* Un tamaño base para el logo */
-    height: auto;
-    /* Quitamos los márgenes fijos que daban problemas */
+    font-size: 2.2rem; /* Tamaño de fuente para móvil */
 }
 
 /* --- BARRA DE NAVEGACIÓN --- */
 .barra {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Botones apilados en móvil */
     align-items: center;
-    gap: 20px;
-    width: 100%; /* Hacemos que la barra ocupe todo el ancho en el header */
-    margin-top: 20px;
+    gap: 15px;
+    width: 100%;
+    margin-top: 15px;
 }
 
 .simple-btn, .dropbtn {
     background-color: rgb(247, 243, 243);
     color: black;
-    font-size: 1.5rem; /* Tamaño de fuente más manejable y relativo */
+    font-size: 1.1rem; /* Fuentes más legibles en móvil */
     border: none;
-    border-radius: 15px;
-    padding: 10px 20px;
+    border-radius: 12px;
+    padding: 12px 20px;
     cursor: pointer;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: inherit; /* Hereda la fuente del body */
     transition: background-color 0.3s ease;
+    width: 90%; /* Ocupan casi todo el ancho, más fácil de tocar */
+    max-width: 350px; /* Pero con un límite para que no sean enormes */
 }
 
 .simple-btn:hover, .dropbtn:hover {
@@ -61,20 +76,21 @@ header {
 /* --- DROPDOWN MENU --- */
 .dropdown {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    max-width: 350px;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: white;
-    min-width: 220px;
+    min-width: 100%; /* Ocupa el mismo ancho que el botón */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 10px;
     z-index: 1000;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .dropdown-content a {
@@ -82,7 +98,7 @@ header {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-size: 1.1rem; /* Ajustamos tamaño */
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -91,34 +107,39 @@ header {
 }
 
 /* --- CONTENIDO PRINCIPAL --- */
+main {
+    padding: 20px 15px;
+}
+
 main h1, main h2, main h3 {
     text-align: center;
     color: goldenrod;
-    padding: 0 20px; /* Evita que el texto toque los bordes en pantallas pequeñas */
+    margin-bottom: 20px;
 }
 
 .sectiongalery {
     display: grid;
-    /* ¡Esta línea ya era responsiva! Perfecto. */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    /* --- CAMBIO CLAVE --- 
+       He reducido el tamaño mínimo a 280px. En una pantalla de 320px,
+       300px + padding causaba el desbordamiento. Ahora sí cabe. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 20px;
-    padding: 20px;
 }
 
 .galeria {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
 }
 
 .galeria img {
-    width: 100%; /* Hacemos que la imagen se ajuste a su contenedor */
-    max-width: 400px; /* Evitamos que sea demasiado grande en la página de comida */
+    width: 100%; 
     height: auto;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
 }
 
 .galeria p {
@@ -134,7 +155,7 @@ main h1, main h2, main h3 {
     color: black;
     background-color: goldenrod;
     border-radius: 15px;
-    padding: 10px 25px; /* Padding para el botón */
+    padding: 10px 25px;
     margin-top: 10px;
     font-weight: bold;
     transition: transform 0.2s ease;
@@ -146,72 +167,72 @@ main h1, main h2, main h3 {
 /* --- FOOTER --- */
 .footer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Apilado en móvil */
     align-items: center;
     background-color: antiquewhite;
-    padding: 20px;
+    padding: 25px 15px;
     text-align: center;
-    flex-wrap: wrap; /* Permite que se envuelva en pantallas pequeñas */
-    gap: 20px; /* Espacio entre los elementos cuando se apilan */
-}
-
-.footerinfo, .footer-rrss, .footerlogo {
-    flex: 1; /* Permite que crezcan y ocupen espacio */
-    min-width: 200px; /* Ancho mínimo antes de que se apilen */
+    gap: 25px; 
 }
 
 .logof {
     width: 100px;
     height: auto;
 }
+.footer-rrss a{
+    margin: 0 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
 
 /* ======================================================= */
-/* --- AHORA LA MAGIA: ESTILOS PARA MÓVILES Y TABLETS --- */
+/* --- ESTILOS PARA TABLETS Y ESCRITORIO --- */
 /* ======================================================= */
 
-@media (max-width: 768px) {
-
-    /* --- HEADER EN MÓVIL --- */
+@media (min-width: 768px) {
+    /* --- HEADER --- */
     header {
-        flex-direction: column; /* Apilamos el logo y el título verticalmente */
-        gap: 15px; /* Espacio entre logo y título */
+        flex-direction: row; /* En horizontal para pantallas grandes */
+        justify-content: space-between;
+        padding: 15px 40px;
+    }
+
+    .logo {
+        order: 0; /* Orden por defecto */
+        width: 180px;
     }
 
     .titulo {
-        font-size: 2rem; /* Reducimos un poco el tamaño del título */
-    }
-    
-    .logo {
-        width: 120px; /* Hacemos el logo un poco más pequeño */
-        order: -1; /* Opcional: Pone el logo arriba del título */
+        font-size: 2.8rem;
     }
 
-    /* --- NAVEGACIÓN EN MÓVIL --- */
+    /* --- NAVEGACIÓN --- */
     .barra {
-        flex-direction: column; /* Apilamos los botones del menú */
-        gap: 15px;
+        flex-direction: row;
+        width: auto; /* Ancho automático, no 100% */
     }
 
+    .simple-btn, .dropbtn, .dropdown {
+        width: auto; /* Ancho automático para los botones */
+    }
     .simple-btn, .dropbtn {
-        font-size: 1.2rem; /* Hacemos los botones más pequeños */
-        width: 80%; /* Hacemos que ocupen más ancho para ser fáciles de tocar */
-        text-align: center;
+        font-size: 1.3rem;
     }
     
-    /* --- TÍTULOS EN MÓVIL --- */
-    main h1, main h2 {
-        font-size: 1.8rem;
+    /* --- CONTENIDO --- */
+    main {
+        padding: 20px 40px;
     }
 
-    /* --- FOOTER EN MÓVIL --- */
+    /* --- FOOTER --- */
     .footer {
-        flex-direction: column; /* Apilamos las secciones del footer */
-        gap: 25px;
+        flex-direction: row; /* En horizontal */
+        justify-content: space-between;
     }
 }
 
-/* Animaciones (estas ya estaban bien, no necesitan cambios) */
-@keyframes brilloDorado { /*...*/ }
-@keyframes zoomSuave { /*...*/ }
-@keyframes desplazarElegante { /*...*/ }
-/* (Copia y pega aquí tus @keyframes para que sigan funcionando) */
+/* Tus animaciones (estas ya estaban bien) */
+@keyframes brilloDorado { /* ... */ }
+@keyframes zoomSuave { /* ... */ }
+@keyframes desplazarElegante { /* ... */ }
