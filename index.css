@@ -1,4 +1,35 @@
+/* ============================================== */
+/* --- ESTILOS DEL BANNER "EN CONSTRUCCIÓN" --- */
+/* ============================================== */
+#construction-banner {
+    background-color: #ffc107; /* Un color dorado/amarillo que encaja con tu web */
+    color: #333;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    position: fixed; /* Lo fija en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Se asegura de que esté por encima de todo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    /* Transición suave para la opacidad */
+    transition: opacity 1s ease-in-out; 
+}
 
+/* Clase que usaremos con JavaScript para ocultarlo */
+.banner-hidden {
+    opacity: 0;
+    /* Hacemos que no se pueda interactuar con él cuando es invisible */
+    pointer-events: none; 
+}
+
+/*
+==============================================
+--- TUS OTROS ESTILOS EMPIEZAN DEBAJO ---
+==============================================
+*/
 html,body{
     width: 100%;
     padding: 0;
@@ -246,5 +277,7 @@ h2{
         flex-direction: column;
         gap: 20px;
     }
+    
 }
+
 
