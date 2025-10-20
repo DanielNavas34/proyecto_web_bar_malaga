@@ -1,19 +1,17 @@
-/* --- TUS ESTILOS ORIGINALES (con pequeñas mejoras) --- */
+
 html,body{
     width: 100%;
     padding: 0;
     margin: 0;
-    box-sizing: border-box; /* CLAVE: Evita que los elementos se desborden */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* ESTA LÍNEA ES ESENCIAL Y NO CAMBIA EL DISEÑO */
+    box-sizing: border-box;
+    /* ESTA LÍNEA EVITA QUE LA WEB "SE CORTE" EN MÓVIL */
+    overflow-x: hidden;
 }
 
 header{
     display: flex;
-    flex-direction: row; /* Horizontal en escritorio */
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    flex-wrap: wrap; /* Permite que se apile si no cabe */
+    flex-direction: column;
 }
 
 .barra{
@@ -21,22 +19,62 @@ header{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-top: 10px;
+    margin-top: 30px;
+}
+
+.barra a{
+    color: black;
+    background-color: rgb(247, 243, 243);
+    font-size: 35px;
+    text-decoration: none;
+    border-radius: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .titulo{
-    color: goldenrod;
+    grid-area: titulo;
+    margin-left: 10px;
 }
 
 .logo{
+    /* TU DISEÑO ORIGINAL CON MÁRGENES ESPECÍFICOS */
+    grid-area: logo;
+    width: 80px;
+    justify-self: start;
     width: 180px;
-    height: auto;
+    margin-left: 80px;
+    margin-top: -50px;
 }
 
 h1{
     text-align: center;
     margin-top: 30px;
     color:goldenrod ;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2{
+    text-align: center;
+    margin-top: 30px;
+    color: goldenrod;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: brilloDorado 3s ease-in-out infinite;
+    font-size: 2.8em;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+@keyframes brilloDorado {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(218, 165, 32, 0.5),
+                     0 0 20px rgba(218, 165, 32, 0.3),
+                     0 0 30px rgba(218, 165, 32, 0.1);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(218, 165, 32, 0.8),
+                     0 0 30px rgba(218, 165, 32, 0.5),
+                     0 0 40px rgba(218, 165, 32, 0.2);
+    }
 }
 
 .galeria{
@@ -44,13 +82,21 @@ h1{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 2px;
     perspective: 1000px;
     animation: zoomSuave 2s ease-out;
 }
 
 @keyframes zoomSuave {
-    0% { opacity: 0; transform: scale(0.9); }
-    100% { opacity: 1; transform: scale(1); }
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .galeria img{
@@ -83,7 +129,7 @@ h1{
 .dropbtn, .simple-btn {
     background-color: rgb(247, 243, 243);
     color: black;
-    font-size: 2rem; /* Tamaño original */
+    font-size: 35px; /* TU TAMAÑO ORIGINAL */
     border: none;
     border-radius: 15px;
     padding: 10px 20px;
@@ -116,17 +162,23 @@ h1{
     display: block;
     font-size: 20px;
     text-align: center;
+    border-bottom: 1px solid #f1f1f1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
 }
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+    border-radius: 10px;
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-/* Footer */
 .footer{
     display: flex;
     justify-content: space-between;
@@ -134,13 +186,18 @@ h1{
     align-items: center;
     padding: 20px;
     text-align: center;
-    flex-wrap: wrap; /* Permite que se apile si no cabe */
-    gap: 20px;
+    flex-wrap: wrap; /* Añadido para que sea flexible */
 }
 
-.footerinfo, .footer-rrss, .footerlogo {
+.footerinfo,
+.footer-rrss{
     flex: 1;
-    min-width: 250px; /* Ancho mínimo antes de apilarse */
+}
+
+.footer.logo{
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .logof{
@@ -150,37 +207,44 @@ h1{
 
 
 /* ======================================================= */
-/* --- AQUÍ EMPIEZA LA MAGIA DEL RESPONSIVE --- */
-/* Estas reglas SÓLO se aplican en pantallas de 768px o menos */
+/* --- ÚNICAMENTE LOS CAMBIOS PARA MÓVIL Y TABLET --- */
 /* ======================================================= */
 @media (max-width: 768px) {
-
-    /* Hacemos que el header se apile verticalmente */
+    
+    /* Centramos todo el contenido del header */
     header {
-        flex-direction: column;
-        gap: 15px;
+        align-items: center;
     }
 
-    /* Hacemos los botones más pequeños y apilados */
+    /* Quitamos los márgenes fijos del logo que rompen el diseño en móvil */
+    .logo {
+        margin: 0; /* Reseteamos los márgenes */
+        width: 150px;
+    }
+
+    /* Apilamos los botones de navegación */
     .barra {
         flex-direction: column;
         width: 100%;
-        gap: 10px;
     }
     
-    .dropbtn, .simple-btn, .dropdown {
-        width: 90%; /* Ocupan casi todo el ancho */
-        font-size: 1.2rem; /* Letra más pequeña */
+    /* Hacemos los botones y su texto más pequeños para que quepan */
+    .simple-btn, .dropbtn {
+        font-size: 1.2rem;
+        width: 90%;
+        max-width: 400px;
     }
 
-    /* Ajustamos los títulos */
-    h1 {
-        font-size: 1.8rem;
+    .dropdown {
+        width: 90%;
+        max-width: 400px;
+        display: flex;
     }
 
     /* Apilamos el footer */
     .footer {
         flex-direction: column;
+        gap: 20px;
     }
 }
 
