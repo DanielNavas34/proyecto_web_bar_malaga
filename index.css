@@ -277,7 +277,23 @@ h2{
         flex-direction: column;
         gap: 20px;
     }
+
+    @media (min-width: 768px) {
+    /* ... */
+    
+    .barra { 
+        flex-direction: row; /* Los pone en fila */
+        width: auto; 
+    }
+    
+    .simple-btn, .dropbtn, .dropdown { 
+        width: auto; /* Hace que cada botón ocupe solo el espacio de su texto */
+    }
+
+    /* ... */
+}
     
 }
+
 
 
