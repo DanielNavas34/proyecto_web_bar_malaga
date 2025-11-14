@@ -206,7 +206,9 @@ h3 {
     }
 }
 
-
+/* ========================================== */
+/* --- ESTILOS PARA DESCRIPCIÓN CON SCROLL --- */
+/* ========================================== */
 
 .descripcion {
     max-height: 0;
@@ -364,4 +366,3 @@ h3 {
 .barra a.simple-btn:hover {
     background-color: #e0e0e0;
 }
-
