@@ -104,9 +104,9 @@ h3{
 }
 
 .dropbtn, .simple-btn {
-    background-color: rgb(247, 243, 243);
+     background-color: rgb(247, 243, 243);
     color: black;
-    font-size: 35px;
+    font-size: 35px; /* TU TAMAÑO ORIGINAL */
     border: none;
     border-radius: 15px;
     padding: 10px 20px;
@@ -192,50 +192,156 @@ h3 {
     }
 }
 
+/* ========================================== */
+/* --- ESTILOS PARA DESCRIPCIÓN CON SCROLL --- */
+/* ========================================== */
+
+.descripcion {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    font-style: italic;
+    color: #666;
+    text-align: center;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 18px;
+    width: 50%;
+}
+
+.galeria:hover .descripcion {
+    max-height: 80px; /* Reducimos un poco la altura máxima */
+    opacity: 1;
+    margin: 10px 0;
+    overflow-y: auto; /* ¡Esto añade el scroll! */
+}
+
+/* Personalizamos el scroll para que sea elegante */
+.descripcion::-webkit-scrollbar {
+    width: 4px;
+}
+
+.descripcion::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.descripcion::-webkit-scrollbar-thumb {
+    background: goldenrod;
+    border-radius: 10px;
+}
+
+.descripcion::-webkit-scrollbar-thumb:hover {
+    background: darkgoldenrod;
+}
+
+.nombre-bocadillo {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: goldenrod;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.btn-pedido {
+    text-decoration: none;
+    color: white;
+    background-color: goldenrod;
+    border-radius: 15px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pedido:hover {
+    background-color: darkgoldenrod;
+}
+
+/* Aseguramos que los elementos de la galería mantengan la alineación */
+.galeria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.galeria:hover {
+    transform: translateY(-5px);
+}
+
 /* ======================================================= */
 /* --- ÚNICAMENTE LOS CAMBIOS PARA MÓVIL Y TABLET --- */
 /* ======================================================= */
-@media (max-width: 768px) {
+@media (max-width: 769px) {
+    
+    /* Centramos todo el contenido del header */
+    header {
+        align-items: center;
+    }
 
-    /* Quitamos los márgenes fijos del logo que rompían el diseño */
+    /* Quitamos los márgenes fijos del logo que rompen el diseño en móvil */
     .logo {
-        margin: 0;
+        margin: 0; /* Reseteamos los márgenes */
         width: 150px;
-        align-self: center; /* Lo centramos */
     }
 
     /* Apilamos los botones de navegación */
     .barra {
         flex-direction: column;
-        align-items: center;
+        width: 100%;
+        gap: 10px; /* Reducimos el gap para móvil */
     }
     
-    /* Hacemos los botones y su texto más pequeños para que quepan */
+    /* Aseguramos que TODOS los botones tengan el mismo ancho */
     .simple-btn, .dropbtn {
         font-size: 1.2rem;
         width: 90%;
         max-width: 400px;
+        min-width: 200px; /* Añadimos un ancho mínimo consistente */
     }
-    
+
+    /* El contenedor dropdown debe ocupar el mismo ancho */
     .dropdown {
         width: 90%;
         max-width: 400px;
         display: flex;
+        justify-content: center;
     }
 
-    /* El problema principal: la imagen debe ocupar el 100% de su contenedor */
-    .galeria img {
+    /* Aseguramos que el botón dentro del dropdown ocupe todo el ancho */
+    .dropdown .dropbtn {
         width: 100%;
     }
 
-    /* El texto también debe ocupar el 100% */
-    .galeria p {
-        width: 100%;
-        font-size: 1.5rem; /* Ajustamos el tamaño de la fuente */
+    /* Apilamos el footer */
+    .footer {
+        flex-direction: column;
+        gap: 20px;
     }
 
-    /* Ajustamos el tamaño de la animación para que no sea tan grande */
-    h3 {
-        font-size: 1.8em;
-    }
+} /* <--- CIERRE CORRECTO del media query */
+
+/* Esto hace que los enlaces <a> con la clase .simple-btn 
+   se vean exactamente igual que los botones */
+.barra a.simple-btn {
+    color: black;
+    background-color: rgb(247, 243, 243);
+    font-size: 35px;
+    text-decoration: none;
+    border-radius: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 20px; /* Importante para que tenga el mismo tamaño */
+    display: inline-block; /* Necesario para que <a> acepte padding */
+}
+
+/* Efecto hover (igual que los botones) */
+.barra a.simple-btn:hover {
+    background-color: #e0e0e0;
 }
