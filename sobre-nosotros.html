@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Malagueña - Sobre Nosotros</title>
+    <link rel="stylesheet" href="sobre-nosotros.css">
+</head>
+<body>
+    <div id="construction-banner">
+       Estamos trabajando en algo maravilloso, pronto podrás verlo.
+    </div>
+    
+   </div>
+    <header>
+        <h1 class="titulo">La Malagueña</h1>
+        <img class="logo" src="LOGO_OK.png">
+       <nav class="barra">
+      <button class="simple-btn" onclick="window.location.href='index.html'">Inicio</button>
+    <div class="dropdown">
+        <button class="dropbtn">Menú</button>
+        <div class="dropdown-content">
+            <a href="comida.html">Pide de comer</a>
+            <a href="#">Pide de beber</a>
+            <a href="#">Pide tu cuenta</a>
+        </div>
+    </div>
+          <button class="simple-btn" onclick="window.location.href='sobre-nosotros.html'">Sobre nosotros</button>
+    
+       </nav>
+</nav>
+    </header>
+
+
+    <main>
+        <section class="about-section">
+            <h2>Nuestra Historia</h2>
+            <p>
+                Desde 2024, La Malagueña ha sido un rincón de tradición y sabor en el corazón de Málaga. Nacimos con el propósito de honrar la singular cultura cafetera de nuestra ciudad. Más que una cafetería, somos un punto de encuentro donde cada taza cuenta una historia y cada bocado sabe a hogar.
+            </p>
+        </section>
+
+        <section class="contact-section">
+            <h2>¡Contáctanos!</h2>
+            <form action="#" method="POST" class="contact-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footerinfo">
+            <p> 📍Dirección: Calle la alegria 35, 29010 Málaga </p>
+            <p> 📞 Teléfono: 652 555 7787</p>
+        </div>
+        <div class="footerlogo">
+            <img class="logof" src="logo.jpg">
+        </div>
+        <div class="footer-rrss">
+            <a href="#">Instagram </a>
+            <a href="#">Facebook</a>
+            <a href="#">TikTok</a> 
+        </div>
+    </footer>
+    
+    <script>
+    window.addEventListener('load', function() {
+        const banner = document.getElementById('construction-banner');
+        setTimeout(function() {
+            banner.classList.add('banner-hidden');
+        }, 3000); 
+    });
+    </script>
+</body>
+</html>
