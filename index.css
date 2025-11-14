@@ -1,6 +1,4 @@
-/* ============================================== */
-/* --- ESTILOS DEL BANNER "EN CONSTRUCCIÓN" --- */
-/* ============================================== */
+
 #construction-banner {
     background-color: #ffc107; /* Un color dorado/amarillo que encaja con tu web */
     color: #333;
@@ -25,11 +23,7 @@
     pointer-events: none; 
 }
 
-/*
-==============================================
---- TUS OTROS ESTILOS EMPIEZAN DEBAJO ---
-==============================================
-*/
+
 html,body{
     width: 100%;
     padding: 0;
@@ -237,10 +231,8 @@ h2{
 }
 
 
-/* ======================================================= */
-/* --- ÚNICAMENTE LOS CAMBIOS PARA MÓVIL Y TABLET --- */
-/* ======================================================= */
-@media (max-width: 768px) {
+
+@media (max-width: 769px) {
     
     /* Centramos todo el contenido del header */
     header {
@@ -257,19 +249,28 @@ h2{
     .barra {
         flex-direction: column;
         width: 100%;
+        gap: 10px; /* Reducimos el gap para móvil */
     }
     
-    /* Hacemos los botones y su texto más pequeños para que quepan */
+    /* Aseguramos que TODOS los botones tengan el mismo ancho */
     .simple-btn, .dropbtn {
         font-size: 1.2rem;
         width: 90%;
         max-width: 400px;
+        min-width: 200px; /* Añadimos un ancho mínimo consistente */
     }
 
+    /* El contenedor dropdown debe ocupar el mismo ancho */
     .dropdown {
         width: 90%;
         max-width: 400px;
         display: flex;
+        justify-content: center;
+    }
+
+    /* Aseguramos que el botón dentro del dropdown ocupe todo el ancho */
+    .dropdown .dropbtn {
+        width: 100%;
     }
 
     /* Apilamos el footer */
@@ -278,22 +279,43 @@ h2{
         gap: 20px;
     }
 
-    @media (min-width: 768px) {
-    /* ... */
-    
-    .barra { 
-        flex-direction: row; /* Los pone en fila */
-        width: auto; 
-    }
-    
-    .simple-btn, .dropbtn, .dropdown { 
-        width: auto; /* Hace que cada botón ocupe solo el espacio de su texto */
-    }
+} /* <--- CIERRE CORRECTO del media query */
 
-    /* ... */
-}
-    
+/* Esto hace que los enlaces <a> con la clase .simple-btn 
+   se vean exactamente igual que los botones */
+.barra a.simple-btn {
+    color: black;
+    background-color: rgb(247, 243, 243);
+    font-size: 35px;
+    text-decoration: none;
+    border-radius: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 20px; /* Importante para que tenga el mismo tamaño */
+    display: inline-block; /* Necesario para que <a> acepte padding */
 }
 
+/* Efecto hover (igual que los botones) */
+.barra a.simple-btn:hover {
+    background-color: #e0e0e0;
+}
+    
+
+/* Esto hace que los enlaces <a> con la clase .simple-btn 
+   se vean exactamente igual que los botones */
+.barra a.simple-btn {
+    color: black;
+    background-color: rgb(247, 243, 243);
+    font-size: 35px;
+    text-decoration: none;
+    border-radius: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 20px; /* Importante para que tenga el mismo tamaño */
+    display: inline-block; /* Necesario para que <a> acepte padding */
+}
+
+/* Efecto hover (igual que los botones) */
+.barra a.simple-btn:hover {
+    background-color: #e0e0e0;
+}
 
 
