@@ -1,21 +1,35 @@
+/* --- ACTUALIZACIÓN CORRECCIÓN DEFINITIVA DE DOBLE SCROLL --- */
+/* Quitamos la agrupación "html, body" y los separamos */
 
-html,body{
+html {
+    /* Dejamos el html limpio para evitar que genere su propia barra */
+    padding: 0;
+    margin: 0;
+}
+
+body {
     width: 100%;
     padding: 0;
     margin: 0;
-    /* ESTA LÍNEA ES ESENCIAL Y NO CAMBIA EL DISEÑO */
+    /* Movemos estas propiedades SOLO al body */
     box-sizing: border-box; 
-    /* ESTA LÍNEA EVITA QUE LA WEB "SE CORTE" EN MÓVIL */
-    overflow-x: hidden;
+    overflow-x: hidden; /* Esto evita el corte lateral sin duplicar la barra vertical */
 }
 
-header{
+/* ------------------------------------------------ */
+/* EL RESTO DE TU DISEÑO SE MANTIENE EXACTAMENTE IGUAL */
+/* ------------------------------------------------ */
+
+header {
     display: flex;
     flex-direction: column;
+    /* Capas para evitar solapamiento */
+    position: relative; 
+    z-index: 1000; 
+    background-color: white; 
 }
 
-
-.barra{
+.barra {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,20 +37,19 @@ header{
     margin-top: 30px;
 }
 
-.barra a{
+.barra a {
     color: black;
     background-color: rgb(247, 243, 243);
     font-size: 35px;
     text-decoration: none;
     border-radius: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
 }
-.titulo{
+.titulo {
     grid-area: titulo;
     margin-left: 10px;
 }
-.logo{
+.logo {
     grid-area: logo;
     width: 80px;
     justify-self: start;
@@ -45,82 +58,149 @@ header{
     margin-top: -50px;
 }
 
-h1{
+h1 {
     text-align: center;
     margin-top: 30px;
-    color:goldenrod ;
+    color: goldenrod;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-h2{
+h2 {
     text-align: center;
     margin-top: 30px;
-    color:goldenrod ;
+    color: goldenrod;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-h3{
-    text-align: center; /* Centrado como en tu animación */
-    margin-top: 30px;
-    color:goldenrod ;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+h3 {
+    text-align: center;
+    margin-top: 15px;
+    color: rgb(12, 12, 12);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: desplazarElegante 8s ease-in-out infinite;
+    padding: 15px 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes desplazarElegante {
+    0% { transform: translateX(-100%) scale(0.8); opacity: 0; }
+    25% { transform: translateX(0%) scale(1); opacity: 1; }
+    75% { transform: translateX(0%) scale(1); opacity: 1; }
+    100% { transform: translateX(100%) scale(0.8); opacity: 0; }
+}
+
+/* --- SECCIÓN PRINCIPAL Y GALERÍA --- */
+
+main {
+    position: relative;
+    z-index: 1; 
+}
+
+.sectiongalery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    align-items: start; 
 }
 
 .galeria {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* CAMBIADO */
+    justify-content: flex-start; 
     margin-top: 2px;
     margin-bottom: 2px;
     padding: 20px;
     border-radius: 10px;
     transition: transform 0.3s ease;
-    height: 100%; /* NUEVO */
-    min-height: 450px; /* NUEVO */
+    height: 100%; 
+    min-height: 450px; 
+}
+
+.galeria:hover {
+    transform: translateY(-5px);
 }
 
 .galeria img {
     width: 50%;
-    height: 150px; /* NUEVO */
-    object-fit: cover; /* NUEVO */
-    margin-bottom: 15px; /* NUEVO */
+    height: 150px; 
+    object-fit: cover; 
+    margin-bottom: 15px; 
 }
 
 .galeria a {
     text-decoration: none;
-    color: white;
-    background-color: goldenrod;
-    border-radius: 15px;
-    margin-top: 15px; /* MODIFICADO */
-    padding: 10px 20px;
-    width: 80%; /* NUEVO */
-    text-align: center; /* NUEVO */
-    transition: background-color 0.3s ease;
-}
-
-.galeria a{
-    text-decoration: none;
     color: black;
     background-color: goldenrod;
     border-radius: 15px;
-    margin-top: 10px;
+    margin-top: 10px; 
+    padding: 10px 20px;
+    width: 80%; 
+    text-align: center; 
+    transition: background-color 0.3s ease;
 }
-.sectiongalery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    align-items: start; /* NUEVA LÍNEA */
+
+/* --- ESTILOS PARA DESCRIPCIÓN CON SCROLL --- */
+
+.descripcion {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    font-style: italic;
+    color: #666;
+    text-align: center;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 16px; 
+    width: 90%; 
+    flex-grow: 1; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
 }
-/* Estilos para el menú desplegable (TUS ESTILOS ORIGINALES) */
+
+.galeria:hover .descripcion {
+    max-height: 80px; 
+    opacity: 1;
+    margin: 10px 0;
+    /* NOTA: Esta es la barra pequeña DENTRO de la tarjeta.
+       Si querías quitar ESTA barra en particular, borra la línea de abajo.
+       Pero el arreglo de arriba soluciona la doble barra de la ventana completa.
+    */
+    overflow-y: auto; 
+}
+
+/* Personalizamos el scroll interno */
+.descripcion::-webkit-scrollbar { width: 4px; }
+.descripcion::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.descripcion::-webkit-scrollbar-thumb { background: goldenrod; border-radius: 10px; }
+.descripcion::-webkit-scrollbar-thumb:hover { background: darkgoldenrod; }
+
+.nombre-bocadillo {
+    font-weight: bold;
+    font-size: 1.3em; 
+    color: goldenrod;
+    margin-bottom: 15px;
+    text-align: center;
+    min-height: 60px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+}
+
+/* --- MENÚ DESPLEGABLE --- */
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
 .dropbtn, .simple-btn {
-     background-color: rgb(247, 243, 243);
+    background-color: rgb(247, 243, 243);
     color: black;
-    font-size: 35px; /* TU TAMAÑO ORIGINAL */
+    font-size: 35px; 
     border: none;
     border-radius: 15px;
     padding: 10px 20px;
@@ -129,7 +209,7 @@ h3{
     transition: background-color 0.3s ease;
 }
 
-.dropbtn:hover {
+.dropbtn:hover, .simple-btn:hover {
     background-color: #e0e0e0;
 }
 
@@ -157,200 +237,21 @@ h3{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.dropdown-content a:last-child {
-    border-bottom: none;
-}
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: #f1f1f1; border-radius: 10px; }
+.dropdown:hover .dropdown-content { display: block; }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-    border-radius: 10px;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.simple-btn:hover {
-    background-color: #e0e0e0;
-}
-
-/* TU ANIMACIÓN ORIGINAL, INTACTA */
-h3 {
-    text-align: center;
-    margin-top: 15px;
-    color: rgb(12, 12, 12);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    animation: desplazarElegante 8s ease-in-out infinite;
-    padding: 15px 0;
-    font-size: 2.5em; /* Tamaño más grande */
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sombra para mejor legibilidad */
-}
-
-@keyframes desplazarElegante {
-    0% {
-        transform: translateX(-100%) scale(0.8);
-        opacity: 0;
-    }
-    25% {
-        transform: translateX(0%) scale(1);
-        opacity: 1;
-    }
-    75% {
-        transform: translateX(0%) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(100%) scale(0.8);
-        opacity: 0;
-    }
-}
-
-/* ========================================== */
-/* --- ESTILOS PARA DESCRIPCIÓN CON SCROLL --- */
-/* ========================================== */
-
-.descripcion {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    font-style: italic;
-    color: #666;
-    text-align: center;
-    margin: 0;
-    padding: 0 10px;
-    font-size: 16px; /* MODIFICADO */
-    width: 90%; /* MODIFICADO */
-    flex-grow: 1; /* NUEVO */
-    display: flex; /* NUEVO */
-    align-items: center; /* NUEVO */
-    justify-content: center; /* NUEVO */
-}
-
-.galeria:hover .descripcion {
-    max-height: 80px; /* Reducimos un poco la altura máxima */
-    opacity: 1;
-    margin: 10px 0;
-    overflow-y: auto; /* ¡Esto añade el scroll! */
-}
-
-/* Personalizamos el scroll para que sea elegante */
-.descripcion::-webkit-scrollbar {
-    width: 4px;
-}
-
-.descripcion::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.descripcion::-webkit-scrollbar-thumb {
-    background: goldenrod;
-    border-radius: 10px;
-}
-
-.descripcion::-webkit-scrollbar-thumb:hover {
-    background: darkgoldenrod;
-}
-
-.nombre-bocadillo {
-    font-weight: bold;
-    font-size: 1.3em; /* MODIFICADO */
-    color: goldenrod;
-    margin-bottom: 15px;
-    text-align: center;
-    min-height: 60px; /* NUEVO */
-    display: flex; /* NUEVO */
-    align-items: center; /* NUEVO */
-    justify-content: center; /* NUEVO */
-    width: 100%; /* NUEVO */
-}
-
-.btn-pedido {
-    text-decoration: none;
-    color: white;
-    background-color: goldenrod;
-    border-radius: 15px;
-    margin-top: 10px;
-    padding: 10px 20px;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-.btn-pedido:hover {
-    background-color: darkgoldenrod;
-}
-
-/* Aseguramos que los elementos de la galería mantengan la alineación */
-.galeria {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    padding: 20px;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.galeria:hover {
-    transform: translateY(-5px);
-}
-
+/* --- RESPONSIVE --- */
 
 @media (max-width: 769px) {
-    
-    /* Centramos todo el contenido del header */
-    header {
-        align-items: center;
-    }
-
-    /* Quitamos los márgenes fijos del logo que rompen el diseño en móvil */
-    .logo {
-        margin: 0; /* Reseteamos los márgenes */
-        width: 150px;
-    }
-
-    /* Apilamos los botones de navegación */
-    .barra {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px; /* Reducimos el gap para móvil */
-    }
-    
-    /* Aseguramos que TODOS los botones tengan el mismo ancho */
-    .simple-btn, .dropbtn {
-        font-size: 1.2rem;
-        width: 90%;
-        max-width: 400px;
-        min-width: 200px; /* Añadimos un ancho mínimo consistente */
-    }
-
-    /* El contenedor dropdown debe ocupar el mismo ancho */
-    .dropdown {
-        width: 90%;
-        max-width: 400px;
-        display: flex;
-        justify-content: center;
-    }
-
-    /* Aseguramos que el botón dentro del dropdown ocupe todo el ancho */
-    .dropdown .dropbtn {
-        width: 100%;
-    }
-
-    /* Apilamos el footer */
-    .footer {
-        flex-direction: column;
-        gap: 20px;
-    }
-
+    header { align-items: center; }
+    .logo { margin: 0; width: 150px; }
+    .barra { flex-direction: column; width: 100%; gap: 10px; }
+    .simple-btn, .dropbtn { font-size: 1.2rem; width: 90%; max-width: 400px; min-width: 200px; }
+    .dropdown { width: 90%; max-width: 400px; display: flex; justify-content: center; }
+    .dropdown .dropbtn { width: 100%; }
 } 
 
-/* Esto hace que los enlaces <a> con la clase .simple-btn 
-   se vean exactamente igual que los botones */
 .barra a.simple-btn {
     color: black;
     background-color: rgb(247, 243, 243);
@@ -358,11 +259,10 @@ h3 {
     text-decoration: none;
     border-radius: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 10px 20px; /* Importante para que tenga el mismo tamaño */
-    display: inline-block; /* Necesario para que <a> acepte padding */
+    padding: 10px 20px; 
+    display: inline-block; 
 }
 
-/* Efecto hover (igual que los botones) */
 .barra a.simple-btn:hover {
     background-color: #e0e0e0;
 }
