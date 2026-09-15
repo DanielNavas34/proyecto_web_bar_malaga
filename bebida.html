@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Malagueña - Bebidas</title>
+    <link rel="stylesheet" href="comida.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <h1 class="titulo">La Malagueña</h1>
+        <img class="logo" src="img/LOGO_OK.png" alt="Logotipo La Malagueña">
+        <nav class="barra">
+            <button class="simple-btn" onclick="window.location.href='index.html'">Inicio</button>
+            <div class="dropdown">
+                <button class="dropbtn">Menú</button>
+                <div class="dropdown-content">
+                    <a href="comida.html">Pide de comer</a>
+                    <a href="bebida.php">Pide de beber</a>
+                    <a href="#">Pide tu cuenta</a>
+                </div>
+            </div>
+            <button class="simple-btn" onclick="window.location.href='sobre-nosotros.html'">Sobre nosotros</button>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Una experiencia inmersiva.</h2>
+        <h3>¡Ahora de beber!</h3>
+        
+        <section class="sectiongalery">
+            <?php
+            // Comprobamos si la variable $conn existe para evitar errores fatales si no has hecho el include
+            if (isset($conn)) {
+                // 1. Preparamos la consulta para traer las bebidas
+                $sql = "SELECT * FROM productos WHERE categoria = 'bebida'";
+                $resultado = $conn->query($sql);
+
+                // 2. Comprobamos si hay resultados
+                if ($resultado && $resultado->num_rows > 0) {
+                    while($fila = $resultado->fetch_assoc()) {
+            ?>
+                    <article class="galeria">
+                        <p class="nombre-bocadillo"><?php echo $fila['nombre']; ?></p>
+                        <img src="img/<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
+                        <p class="descripcion"><?php echo $fila['descripcion']; ?></p>
+                        <button class="btn-pedido" onclick="agregarAlCarrito('<?php echo $fila['nombre']; ?>', <?php echo $fila['precio']; ?>)">
+                              <?php echo $fila['precio']; ?>€
+                        </button>
+                    </article>
+            <?php
+                    } // Fin del bucle while
+                } else {
+                    echo "<p style='text-align:center; width:100%;'>No hay productos disponibles en este momento.</p>";
+                }
+            } else {
+                echo "<p style='text-align:center; width:100%; color:red;'>Error: No hay conexión a la base de datos configurada.</p>";
+            }
+            ?>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footerinfo">
+            <p> 📍Dirección: Calle la alegría 35, 29010 Málaga </p>
+            <p> 📞 Teléfono: 652 555 7787</p>
+        </div>
+        <div class="footerlogo">
+            <img class="logof" src="img/logo.jpg" alt="Logo">
+        </div>
+        <div class="footer-rrss">
+            <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a> 
+        </div>
+    </footer>
+
+    <!-- INTERFAZ DEL CARRITO -->
+    <div id="icono-carrito" onclick="toggleCarrito()">
+        🛒 <span id="contador-carrito">0</span>
+    </div>
+
+    <div id="modal-carrito" class="modal-carrito">
+        <h3>Tu Pedido</h3>
+        <div id="lista-carrito"></div>
+        <div class="total-carrito">Total: <span id="total-precio">0.00</span>€</div>
+        <button onclick="borrarCarrito()" style="background: red; color: white;">Vaciar</button>
+        <button onclick="finalizarPedido()" style="background: green; color: white;">Pedir por WhatsApp</button>
+        <button onclick="toggleCarrito()">Cerrar</button>
+    </div>
+
+    <!-- SCRIPT DEL CARRITO -->
+    <script src="carrito.js"></script>
+
+</body>
+</html>
