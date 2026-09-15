@@ -31,35 +31,7 @@
         <h3>¡Ahora de beber!</h3>
         
         <section class="sectiongalery">
-            <?php
-            // Comprobamos si la variable $conn existe para evitar errores fatales si no has hecho el include
-            if (isset($conn)) {
-                // 1. Preparamos la consulta para traer las bebidas
-                $sql = "SELECT * FROM productos WHERE categoria = 'bebida'";
-                $resultado = $conn->query($sql);
-
-                // 2. Comprobamos si hay resultados
-                if ($resultado && $resultado->num_rows > 0) {
-                    while($fila = $resultado->fetch_assoc()) {
-            ?>
-                    <article class="galeria">
-                        <p class="nombre-bocadillo"><?php echo $fila['nombre']; ?></p>
-                        <img src="img/<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
-                        <p class="descripcion"><?php echo $fila['descripcion']; ?></p>
-                        <button class="btn-pedido" onclick="agregarAlCarrito('<?php echo $fila['nombre']; ?>', <?php echo $fila['precio']; ?>)">
-                              <?php echo $fila['precio']; ?>€
-                        </button>
-                    </article>
-            <?php
-                    } // Fin del bucle while
-                } else {
-                    echo "<p style='text-align:center; width:100%;'>No hay productos disponibles en este momento.</p>";
-                }
-            } else {
-                echo "<p style='text-align:center; width:100%; color:red;'>Error: No hay conexión a la base de datos configurada.</p>";
-            }
-            ?>
-        </section>
+                 </section>
     </main>
 
     <footer class="footer">
