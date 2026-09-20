@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Malagueña</title>
     <link rel="stylesheet" href="index.css">
+   
 </head>
 <body>
-    
-
+ 
     <header>
         <h1 class="titulo">La Malagueña</h1>
-        <img class="logo" src="logo.jpg" alt="Logotipo La Malagueña">
-        <nav class="barra">
-            <button class="simple-btn" onclick="window.location.href='index.html'">Inicio</button>
-            <div class="dropdown">
-                <button class="dropbtn">Menú</button>
-                <div class="dropdown-content">
-                    <a href="comida.html">Pide de comer</a>
-                    <a href="bebida.html">Pide de beber</a>
-                    
-                </div>
-            </div>
-            <button class="simple-btn" onclick="window.location.href='sobre-nosotros.html'">Sobre nosotros</button>
-        </nav>
+        <img class="logo" src="LOGO_OK.png">
+       <nav class="barra">
+        <button class="simple-btn">Inicio</button>
+    <div class="dropdown">
+        <button class="dropbtn">Menú</button>
+        <div class="dropdown-content">
+            <a href="comida.html">Pide de comer</a>
+            <a href="bebida.html">Pide de beber</a>
+            
+        </div>
+    </div>
+          <button class="simple-btn" onclick="window.location.href='sobre-nosotros.html'">Sobre nosotros</button>
+    
+       </nav>
+</nav>
     </header>
 
     <main>
         <h1>Los mejores platos de la ciudad.</h1>
         <section class="sectiongalery">
             <article class="galeria">
-                <img src="fondo inicio.jpg" alt="Fondo inicio">
+                <img src="fondo inicio.jpg">
             </article>
         </section>
     </main>
@@ -41,7 +43,7 @@
             <p> 📞 Teléfono: 652 555 7787</p>
         </div>
         <div class="footerlogo">
-            <img class="logof" src="logo.jpg" alt="Logo footer">
+            <img class="logof" src="logo.jpg">
         </div>
         <div class="footer-rrss">
             <a href="#">Instagram </a>
@@ -49,19 +51,7 @@
             <a href="#">TikTok</a> 
         </div>
     </footer>
-
-    <script>
-        // Espera a que todo el contenido de la página se cargue
-        window.addEventListener('load', function() {
-            // Selecciona el banner por su ID
-            const banner = document.getElementById('construction-banner');
-
-            // Espera 3 segundos (3000 milisegundos) antes de hacer algo
-            setTimeout(function() {
-                // Añade la clase 'banner-hidden' para que empiece la animación de desvanecimiento
-                banner.classList.add('banner-hidden');
-            }, 3000); 
-        });
-    </script>
+    
 </body>
+
 </html>
